@@ -9,12 +9,12 @@ const shared: Partial<DefaultTheme> = {
           "Segoe UI Emoji","Segoe UI Symbol"`,
 };
 
-export default function themeService(theme: DefaultTheme['name'], dir: 'ltr' | 'rtl') {
+export default function themeService(theme: DefaultTheme['name']) {
   switch (theme) {
     case 'dark':
     case 'cosmic':
     case 'corporate':
     default:
-      return createTheme(theme, { dir, ...shared });
+      return createTheme(theme, { ...shared });
   }
 }

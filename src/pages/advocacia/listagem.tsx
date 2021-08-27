@@ -1,11 +1,11 @@
 import { Card, CardBody } from '@paljs/ui';
 import React from 'react';
 import Layout from 'Layouts';
-export default function Index() {
+export default function listagem() {
   return (
-    <Layout title="Inicio">
+    <Layout title="Advocacia Criacao">
       <Card>
-        <CardBody>Inicio</CardBody>
+        <CardBody>criacao</CardBody>
       </Card>
     </Layout>
   );

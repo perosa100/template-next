@@ -1,19 +1,28 @@
 import React, { useState, useRef, useEffect, Fragment } from 'react';
 import { DefaultTheme, ThemeProvider } from 'styled-components';
-import themes from './themes';
-import { Layout, LayoutContent, LayoutFooter, LayoutContainer, LayoutColumns, LayoutColumn } from '@paljs/ui/Layout';
+import themes from 'styles/themes';
 import icons from '@paljs/icons';
-import { SidebarBody, SidebarRefObject, Sidebar } from '@paljs/ui/Sidebar';
 import Header from './Header';
 import SimpleLayout from './SimpleLayout';
 import { useRouter } from 'next/router';
-import { EvaIcon } from '@paljs/ui/Icon';
-import { Button } from '@paljs/ui/Button';
-import { Menu, MenuRefObject } from '@paljs/ui/Menu';
+import {
+  EvaIcon,
+  Button,
+  Menu,
+  MenuRefObject,
+  SidebarBody,
+  SidebarRefObject,
+  Sidebar,
+  Layout,
+  LayoutContent,
+  LayoutFooter,
+  LayoutContainer,
+  LayoutColumns,
+  LayoutColumn,
+} from '@paljs/ui';
 import Link from 'next/link';
 import menuItems from './menuItem';
 import SEO, { SEOProps } from 'components/SEO';
-
 const getDefaultTheme = (): DefaultTheme['name'] => {
   if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
     return localStorage.getItem('theme') as DefaultTheme['name'];
@@ -25,11 +34,11 @@ const getDefaultTheme = (): DefaultTheme['name'] => {
 
 const LayoutPage: React.FC<SEOProps> = ({ children, ...rest }) => {
   const [theme, setTheme] = useState<DefaultTheme['name']>('default');
-  const [dir, setDir] = useState<'ltr' | 'rtl'>('ltr');
   const sidebarRef = useRef<SidebarRefObject>(null);
   const router = useRouter();
   const [menuState, setMenuState] = useState(false);
   const menuRef = useRef<MenuRefObject>(null);
+  console.log('🚀 ~ file: index.tsx ~ line 41 ~ menuRef', menuRef);
   const [seeHeader, setSeeHeader] = useState(true);
 
   const getState = (state?: 'hidden' | 'visible' | 'compacted' | 'expanded') => {
@@ -48,27 +57,17 @@ const LayoutPage: React.FC<SEOProps> = ({ children, ...rest }) => {
     }
   }, []);
 
-  const changeDir = () => {
-    const newDir = dir === 'ltr' ? 'rtl' : 'ltr';
-    setDir(newDir);
-  };
-
   const authLayout = router.pathname.startsWith('/auth');
 
   return (
     <Fragment>
       <SEO {...rest} />
-      <ThemeProvider theme={themes(theme, dir)}>
+      <ThemeProvider theme={themes(theme)}>
         <Fragment>
           <SimpleLayout />
-          <Layout evaIcons={icons} dir={dir} className={!authLayout ? 'auth-layout' : ''}>
+          <Layout evaIcons={icons} dir="ltr" className={!authLayout ? 'auth-layout' : ''}>
             {!authLayout && (
-              <Header
-                dir={dir}
-                changeDir={changeDir}
-                theme={{ set: changeTheme, value: theme }}
-                toggleSidebar={() => sidebarRef.current?.toggle()}
-              />
+              <Header theme={{ set: changeTheme, value: theme }} toggleSidebar={() => sidebarRef.current?.toggle()} />
             )}
             <LayoutContainer>
               {!authLayout && (
@@ -110,7 +109,7 @@ const LayoutPage: React.FC<SEOProps> = ({ children, ...rest }) => {
               )}
               <LayoutContent>
                 <LayoutColumns>
-                  <LayoutColumn className="main-content">{children}</LayoutColumn>
+                  <LayoutColumn className="main-content">{children}aaaaaaaaa</LayoutColumn>
                 </LayoutColumns>
                 {!authLayout && <LayoutFooter>Footer</LayoutFooter>}
               </LayoutContent>
