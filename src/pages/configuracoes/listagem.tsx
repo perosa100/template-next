@@ -1,6 +1,12 @@
+import { Card, CardBody } from '@paljs/ui';
 import React from 'react';
-import { Box } from '@material-ui/core';
-
+import Layout from 'Layouts';
 export default function listagem() {
-  return <Box>listagem configuracoes</Box>;
+  return (
+    <Layout title="listagem">
+      <Card>
+        <CardBody>listagem</CardBody>
+      </Card>
+    </Layout>
+  );
 }

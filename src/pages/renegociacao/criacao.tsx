@@ -1,6 +1,12 @@
+import { Card, CardBody } from '@paljs/ui';
 import React from 'react';
-import { Box } from '@material-ui/core';
-
+import Layout from 'Layouts';
 export default function criacao() {
-  return <Box>criacao renegociacao</Box>;
+  return (
+    <Layout title="listagem">
+      <Card>
+        <CardBody>Criacao</CardBody>
+      </Card>
+    </Layout>
+  );
 }

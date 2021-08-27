@@ -3,7 +3,7 @@ import React from 'react';
 import Layout from 'Layouts';
 export default function criacao() {
   return (
-    <Layout>
+    <Layout title="listagem">
       <Card>
         <CardBody>Criacao</CardBody>
       </Card>
